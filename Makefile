@@ -4,7 +4,7 @@
 SRCDIR                = .
 SUBDIRS               =
 DLLS                  =
-EXES                  = wmahack3.exe
+EXES                  = wmahack.exe
 
 
 
@@ -21,34 +21,34 @@ LIBRARY_PATH          =
 LIBRARIES             =
 
 
-### wmahack3.exe sources and settings
+### wmahack.exe sources and settings
 
-wmahack3_exe_MODULE   = wmahack3.exe
-wmahack3_exe_C_SRCS   = wmahack.c
-wmahack3_exe_CXX_SRCS =
-wmahack3_exe_RC_SRCS  =
-wmahack3_exe_LDFLAGS  = -mconsole \
+wmahack_exe_MODULE   = wmahack.exe
+wmahack_exe_C_SRCS   = wmahack.c
+wmahack_exe_CXX_SRCS =
+wmahack_exe_RC_SRCS  =
+wmahack_exe_LDFLAGS  = -mconsole \
 			-mno-cygwin
-wmahack3_exe_DLL_PATH =
-wmahack3_exe_DLLS     = odbc32 \
+wmahack_exe_DLL_PATH =
+wmahack_exe_DLLS     = odbc32 \
 			ole32 \
 			oleaut32 \
 			winspool \
 			odbccp32
-wmahack3_exe_LIBRARY_PATH=
-wmahack3_exe_LIBRARIES= uuid
+wmahack_exe_LIBRARY_PATH=
+wmahack_exe_LIBRARIES= uuid
 
-wmahack3_exe_OBJS     = $(wmahack3_exe_C_SRCS:.c=.o) \
-			$(wmahack3_exe_CXX_SRCS:.cpp=.o) \
-			$(wmahack3_exe_RC_SRCS:.rc=.res)
+wmahack_exe_OBJS     = $(wmahack_exe_C_SRCS:.c=.o) \
+			$(wmahack_exe_CXX_SRCS:.cpp=.o) \
+			$(wmahack_exe_RC_SRCS:.rc=.res)
 
 
 
 ### Global source lists
 
-C_SRCS                = $(wmahack3_exe_C_SRCS)
-CXX_SRCS              = $(wmahack3_exe_CXX_SRCS)
-RC_SRCS               = $(wmahack3_exe_RC_SRCS)
+C_SRCS                = $(wmahack_exe_C_SRCS)
+CXX_SRCS              = $(wmahack_exe_CXX_SRCS)
+RC_SRCS               = $(wmahack_exe_RC_SRCS)
 
 
 ### Tools
@@ -104,7 +104,7 @@ $(EXTRASUBDIRS:%=%/__clean__): dummy
 ### Target specific build rules
 DEFLIB = $(LIBRARY_PATH) $(LIBRARIES) $(DLL_PATH) $(DLL_IMPORTS:%=-l%)
 
-$(wmahack3_exe_MODULE).so: $(wmahack3_exe_OBJS)
-	$(CC) $(wmahack3_exe_LDFLAGS) -o $@ $(wmahack3_exe_OBJS) $(wmahack3_exe_LIBRARY_PATH) $(DEFLIB) $(wmahack3_exe_DLLS:%=-l%) $(wmahack3_exe_LIBRARIES:%=-l%)
+$(wmahack_exe_MODULE).so: $(wmahack_exe_OBJS)
+	$(CC) $(wmahack_exe_LDFLAGS) -o $@ $(wmahack_exe_OBJS) $(wmahack_exe_LIBRARY_PATH) $(DEFLIB) $(wmahack_exe_DLLS:%=-l%) $(wmahack_exe_LIBRARIES:%=-l%)
 
 
