@@ -7,9 +7,13 @@ void bail(const char *err) {
 	exit(1);
 }
 
+typedef HRESULT (*_DllGetClassObject) (struct *IClassFactory);
+
 int main(int argc, char *argv[]) {
 	HMODULE hDll;
-	void *DllGetClassObject;
+	HRESULT hr;
+	void *DllGetClassObject = NULL;
+    struct IClassFactory* factory = NULL;
 
 	printf("Hello world\n");
 
@@ -17,7 +21,9 @@ int main(int argc, char *argv[]) {
 
 	DllGetClassObject = GetProcAddress(hDll, "DllGetClassObject");
 	if (!DllGetClassObject) bail("Bad COM DLL");
-	
+
+	hr = DllGetClassObject((void *)&factory);
+	if (hr) bail("could not get class object");
 
 	return 0;
 }
