@@ -7,12 +7,10 @@ void bail(const char *err) {
 	exit(1);
 }
 
-typedef HRESULT (*_DllGetClassObject) (struct *IClassFactory);
-
 int main(int argc, char *argv[]) {
 	HMODULE hDll;
 	HRESULT hr;
-	void *DllGetClassObject = NULL;
+	FARPROC DllGetClassObject = NULL;
     struct IClassFactory* factory = NULL;
 
 	printf("Hello world\n");
