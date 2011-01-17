@@ -24,8 +24,8 @@ LIBRARIES             =
 ### wmahack.exe sources and settings
 
 wmahack_exe_MODULE   = wmahack.exe
-wmahack_exe_C_SRCS   = wmahack.c
-wmahack_exe_CXX_SRCS =
+wmahack_exe_C_SRCS   =
+wmahack_exe_CXX_SRCS = wmahack.cc
 wmahack_exe_RC_SRCS  =
 wmahack_exe_LDFLAGS  = -mconsole \
 			-mno-cygwin
