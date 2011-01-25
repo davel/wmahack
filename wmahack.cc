@@ -7,20 +7,32 @@ void bail(const char *err) {
 	exit(1);
 }
 
+typedef HRESULT (*GETCLASSOBJECT) (REFCLSID clsid, REFIID iid, LPVOID* ppv);
+
+static const CLSID wma9d = { 0x27ca0808, 501, 20090,{ 0x8b, 5, 0x87, 0xf8, 7, 0xa2, 0x33, 0xd1 } };
+
 int main(int argc, char *argv[]) {
 	HMODULE hDll;
 	HRESULT hr;
-	FARPROC DllGetClassObject = NULL;
-    struct IClassFactory* factory = NULL;
-
+	GETCLASSOBJECT DllGetClassObject = NULL;
+    LPVOID factory;
+	REFCLSID filter_guid = wma9d;
 	printf("Hello world\n");
 
 	hDll = LoadLibraryA("/usr/lib/win32/wma9dmod.dll");
 
-	DllGetClassObject = GetProcAddress(hDll, "DllGetClassObject");
+	DllGetClassObject = (GETCLASSOBJECT) (GetProcAddress(hDll, "DllGetClassObject"));
 	if (!DllGetClassObject) bail("Bad COM DLL");
 
-	hr = DllGetClassObject((void *)&factory);
+	hr = DllGetClassObject(
+
+filter_guid,
+
+IID_IClassFactory,
+
+&factory
+
+);
 	if (hr) bail("could not get class object");
 
 	return 0;
