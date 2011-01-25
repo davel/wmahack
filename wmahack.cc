@@ -24,15 +24,7 @@ int main(int argc, char *argv[]) {
 	DllGetClassObject = (GETCLASSOBJECT) (GetProcAddress(hDll, "DllGetClassObject"));
 	if (!DllGetClassObject) bail("Bad COM DLL");
 
-	hr = DllGetClassObject(
-
-filter_guid,
-
-IID_IClassFactory,
-
-&factory
-
-);
+	hr = DllGetClassObject(filter_guid, IID_IClassFactory, &factory);
 	if (hr) bail("could not get class object");
 
 	return 0;
