@@ -18,7 +18,7 @@ INCLUDE_PATH          =
 DLL_PATH              =
 DLL_IMPORTS           =
 LIBRARY_PATH          =
-LIBRARIES             =
+LIBRARIES             = -lstdc++
 
 
 ### wmahack.exe sources and settings
